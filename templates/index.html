@@ -1,0 +1,71 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Warranty Details Dashboard{% endblock %}
+
+{% block navbar %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Your Logo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <!-- Add more menu items as needed -->
+      </ul>
+    </div>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h1 class="text-center">Warranty Details Dashboard</h1>
+
+    <!-- Search Form -->
+    <form class="mb-3">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search by device name" name="search" value="{{ search_query }}">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Charts -->
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{ chart1_url }}" class="img-fluid" alt="Chart 1">
+      </div>
+      <div class="col-md-6">
+        <img src="{{ chart2_url }}" class="img-fluid" alt="Chart 2">
+      </div>
+    </div>
+
+    <!-- Warranty Details Table -->
+    <table class="table mt-4">
+      <thead class="thead-dark">
+        <tr>
+          <th>Device Identifier</th>
+          <th>End Date</th>
+          <th>Device Model</th>
+          <th>Page</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for device in warranty_details %}
+          <tr>
+            <td>{{ device['DeviceIdentifier'] }}</td>
+            <td>{{ device['EndDate'] }}</td>
+            <td>{{ device['DeviceModel'] }}</td>
+            <td>{{ device['Page'] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}
